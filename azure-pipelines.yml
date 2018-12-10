@@ -13,7 +13,7 @@ variables:
 
 steps:
 - script: |
-  .\Build.ps1
+    .\Build.ps1
 
 - task: NuGetToolInstaller@0
 
