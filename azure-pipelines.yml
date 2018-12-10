@@ -12,6 +12,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: |
+  .\Build.ps1
+
 - task: NuGetToolInstaller@0
 
 - task: NuGetCommand@2
