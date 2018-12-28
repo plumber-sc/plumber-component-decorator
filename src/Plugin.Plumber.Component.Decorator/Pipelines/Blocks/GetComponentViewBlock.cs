@@ -54,7 +54,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                 return entityView;
             }
 
-            List<Type> applicableComponentTypes = await this.commander.GetApplicableComponentTypes(request.Entity, request.ItemId, context.CommerceContext);
+            List<Type> applicableComponentTypes = this.commander.GetApplicableComponentTypes(request.Entity, request.ItemId, context.CommerceContext);
 
             var targetView = entityView;
 

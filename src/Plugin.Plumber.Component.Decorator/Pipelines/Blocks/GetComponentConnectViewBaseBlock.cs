@@ -50,7 +50,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                 return arg;
             }
 
-            List<Type> allComponentTypes = await catalogSchemaCommander.GetAllComponentTypes(context.CommerceContext);
+            List<Type> allComponentTypes = catalogSchemaCommander.GetAllComponentTypes();
 
             var targetView = arg;
 
@@ -96,7 +96,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
 
             }
 
-            return arg;
+            return await Task.FromResult(arg);
         }
 
     }

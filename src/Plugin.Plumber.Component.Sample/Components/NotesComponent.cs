@@ -1,10 +1,9 @@
-﻿using Sitecore.Commerce.Core;
-using Plugin.Plumber.Component.Attributes;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Sitecore.Commerce.Plugin.Catalog;
 using Sitecore.Commerce.Plugin.Inventory;
 using Sitecore.Commerce.Plugin.Orders;
 using Sitecore.Commerce.Plugin.Promotions;
+using Plugin.Plumber.Component.Decorator.Attributes;
 
 namespace Plugin.Plumber.Component.Sample.Components
 {

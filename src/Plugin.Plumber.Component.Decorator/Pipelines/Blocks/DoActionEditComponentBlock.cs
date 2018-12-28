@@ -56,7 +56,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                 }
             }
 
-            var allComponentTypes = await catalogSchemaCommander.GetAllComponentTypes(context.CommerceContext);
+            var allComponentTypes = catalogSchemaCommander.GetAllComponentTypes();
             var editedComponentType = allComponentTypes.SingleOrDefault(compType => entityView.Action == $"Edit-{compType.FullName}");
             var editedComponent = components.SingleOrDefault(comp => entityView.Action == $"Edit-{comp.GetType().FullName}");
 
@@ -74,7 +74,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                 await this.catalogSchemaCommander.Pipeline<IPersistEntityPipeline>().Run(new PersistEntityArgument(commerceEntity), context);
             }
 
-            return entityView;
+            return await Task.FromResult(entityView);
         }
 
     }

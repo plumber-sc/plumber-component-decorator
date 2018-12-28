@@ -13,8 +13,6 @@ namespace Plugin.Plumber.Component
         /// </summary>
         public static class Pipelines
         {
-            public const string GetEntityViewComponentsPipeline = "Plumber.Catalog.IGetSellableItemComponentsPipeline";
-
             /// <summary>
             ///     The names of the Plumber.Catalog blocks.
             /// </summary>

@@ -28,9 +28,7 @@ namespace Plugin.Plumber.Component
                 .ConfigureGetEntityViewPipeline()
                 .ConfigurePopulateEntityViewActionsPipeline()
                 .ConfigureDoActionPipeline()
-                .AddGetEntityViewComponentsPipeline()
                 .AddGetApplicableViewConditionsPipeline()
-                .ConfigureConfigureServiceApiPipeline()
                 .Pipelines(config =>
                         config.ConfigurePipeline<IRunningPluginsPipeline>(c =>
                             c.Add<RegisteredPluginBlock>())

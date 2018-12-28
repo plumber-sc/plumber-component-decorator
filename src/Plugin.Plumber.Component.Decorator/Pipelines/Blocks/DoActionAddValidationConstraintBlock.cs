@@ -42,7 +42,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                 return entityView;
             }
             
-            var applicableComponentTypes = await this.catalogSchemaCommander.GetApplicableComponentTypes(commerceEntity, null, context.CommerceContext);
+            var applicableComponentTypes = this.catalogSchemaCommander.GetApplicableComponentTypes(commerceEntity, null, context.CommerceContext);
             var editedComponentType = applicableComponentTypes.SingleOrDefault(comp => entityView.Action == $"Edit-{comp.FullName}");
 
             if (editedComponentType != null)
