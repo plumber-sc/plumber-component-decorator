@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Sitecore.Commerce.Core">
-      <Version>2.2.*</Version>
+      <Version>2.2.29</Version>
     </PackageReference>
     <PackageReference Include="Sitecore.Commerce.Plugin.Catalog" Version="2.2.46" />
     <PackageReference Include="Sitecore.Commerce.Plugin.Inventory" Version="2.2.26" />
@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ConfigureServiceApiBlock.cs" />
     <Content Include="ConfigureSitecore.cs" />
     <Content Include="Components\SampleComponent.cs" />
   </ItemGroup>
@@ -40,6 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Plugin.Plumber.Component\Plugin.Plumber.Component.csproj" />
+    <ProjectReference Include="..\Plugin.Plumber.Component.Decorator\Plugin.Plumber.Component.Decorator.csproj" />
   </ItemGroup>
 </Project>

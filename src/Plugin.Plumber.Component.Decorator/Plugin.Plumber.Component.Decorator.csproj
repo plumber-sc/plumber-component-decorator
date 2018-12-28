@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ConfigureServiceApiBlock.cs" />
     <Content Include="ConfigureSitecore.cs" />
   </ItemGroup>
 

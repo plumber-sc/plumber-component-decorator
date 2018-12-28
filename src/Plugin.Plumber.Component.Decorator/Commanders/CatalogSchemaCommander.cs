@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Plugin.Plumber.Component.Decorator.Attributes;
 using Plugin.Plumber.Component.Decorator.Attributes.SellableItem;
+using Plugin.Plumber.Component.Decorator.Builders;
 using Plugin.Plumber.Component.Decorator.Pipelines;
 using Plugin.Plumber.Component.Decorator.Pipelines.Arguments;
 using Sitecore.Commerce.Core;
@@ -19,25 +20,28 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
     /// </summary>
     public class ComponentViewCommander : CommerceCommander
     {
+        public IServiceProvider ServiceProvider { get; }
+
+        private readonly IEnumerable<ViewComponentDefinition> viewComponents;
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="serviceProvider"></param>
-        public ComponentViewCommander(IServiceProvider serviceProvider) : base(serviceProvider)
+        /// <param name="viewComponents"></param>
+        public ComponentViewCommander(IServiceProvider serviceProvider, IEnumerable<ViewComponentDefinition> viewComponents) : base(serviceProvider)
         {
+            this.ServiceProvider = serviceProvider;
+            this.viewComponents = viewComponents;
         }
 
         /// <summary>
         ///     Returns all registered component types  
         /// </summary>
-        /// <param name="context"></param>
         /// <returns></returns>
-        public async Task<List<Type>> GetAllComponentTypes(CommerceContext context)
+        public List<Type> GetAllComponentTypes()
         {
-            var sellableItemComponentsArgument = new EntityViewComponentsArgument();
-            sellableItemComponentsArgument = await this.Pipeline<IGetEntityViewComponentsPipeline>().Run(sellableItemComponentsArgument, context.GetPipelineContext());
-
-            return sellableItemComponentsArgument.Components;
+            return viewComponents.Select(comp => comp.Defines).ToList<Type>();
         }
 
         /// <summary>
@@ -47,7 +51,7 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
         /// <param name="itemId"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public async Task<List<Type>> GetApplicableComponentTypes(CommerceEntity commerceEntity, string itemId, CommerceContext context)
+        public List<Type> GetApplicableComponentTypes(CommerceEntity commerceEntity, string itemId, CommerceContext context)
         {
             // Get the item definition
             var catalogs = commerceEntity.GetComponent<CatalogsComponent>();
@@ -55,15 +59,13 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
             // TODO: What happens if a sellableitem is part of multiple catalogs?
             var catalog = catalogs.GetComponent<CatalogComponent>();
             var itemDefinition = catalog.ItemDefinition;
- 
 
-            var sellableItemComponentsArgument = new EntityViewComponentsArgument();
-            sellableItemComponentsArgument = await this.Pipeline<IGetEntityViewComponentsPipeline>().Run(sellableItemComponentsArgument, context.GetPipelineContext());
+            var allComponentTypes = GetAllComponentTypes();
 
             var applicableComponentTypes = new List<Type>();
-            foreach (var component in sellableItemComponentsArgument.Components)
+            foreach (var componentType in allComponentTypes)
             {
-                System.Attribute[] attrs = System.Attribute.GetCustomAttributes(component);
+                System.Attribute[] attrs = System.Attribute.GetCustomAttributes(componentType);
 
                 if (attrs.Any(attr => attr is AllSellableItemsAttribute) && commerceEntity is SellableItem)
                 {
@@ -72,7 +74,7 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
 
                     if (IsApplicableComponent(itemId, addToSellableItem))
                     {
-                        applicableComponentTypes.Add(component);
+                        applicableComponentTypes.Add(componentType);
                     }
                 }
                 else if (attrs.Any(attr => attr is AddToItemDefinitionAttribute && ((AddToItemDefinitionAttribute)attr).ItemDefinition == itemDefinition))
@@ -82,16 +84,16 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
 
                     if (IsApplicableComponent(itemId, addToSellableItem))
                     {
-                        applicableComponentTypes.Add(component);
+                        applicableComponentTypes.Add(componentType);
                     }
                 }
-                else if( attrs.Any(attr => attr is AddToEntityTypeAttribute && ((AddToEntityTypeAttribute)attr).EntityType == commerceEntity.GetType()))
+                else if (attrs.Any(attr => attr is AddToEntityTypeAttribute && ((AddToEntityTypeAttribute)attr).EntityType == commerceEntity.GetType()))
                 {
-                    applicableComponentTypes.Add(component);
+                    applicableComponentTypes.Add(componentType);
                 }
-                else if( attrs.Any(attr => attr is AddToAllEntityTypesAttribute))
+                else if (attrs.Any(attr => attr is AddToAllEntityTypesAttribute))
                 {
-                    applicableComponentTypes.Add(component);
+                    applicableComponentTypes.Add(componentType);
                 }
 
             }
