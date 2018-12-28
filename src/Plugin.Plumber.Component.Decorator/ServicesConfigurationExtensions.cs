@@ -56,15 +56,6 @@ namespace Plugin.Plumber.Component
             return services;
         }
 
-        public static ISitecoreServicesConfiguration AddGetEntityViewComponentsPipeline(this ISitecoreServicesConfiguration services)
-        {
-            services.Pipelines(
-                config =>
-                    config.AddPipeline<IGetEntityViewComponentsPipeline, GetEntityViewComponentsPipeline>()
-            );
-            return services;
-        }
-
         public static ISitecoreServicesConfiguration AddGetApplicableViewConditionsPipeline(this ISitecoreServicesConfiguration services)
         {
             services.Pipelines(
@@ -83,15 +74,6 @@ namespace Plugin.Plumber.Component
                             .Add<ValidatePriceCardViewBlock>()
                             .Add<ValidateCategoryViewBlock>();
                         })
-            );
-            return services;
-        }
-
-        public static ISitecoreServicesConfiguration ConfigureConfigureServiceApiPipeline(this ISitecoreServicesConfiguration services)
-        {
-            services.Pipelines(
-                config =>
-                    config.ConfigurePipeline<IConfigureServiceApiPipeline>(c => c.Add<ConfigureServiceApiBlock>())
             );
             return services;
         }

@@ -1,7 +1,6 @@
-﻿using Sitecore.Commerce.Core;
-using Plugin.Plumber.Component.Attributes;
-using System.ComponentModel.DataAnnotations;
-using Plugin.Plumber.Component.Attributes.SellableItem;
+﻿using System.ComponentModel.DataAnnotations;
+using Plugin.Plumber.Component.Decorator.Attributes;
+using Plugin.Plumber.Component.Decorator.Attributes.SellableItem;
 
 namespace Plugin.Plumber.Component.Sample.Components
 {

@@ -37,7 +37,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
 
             if (commerceEntity != null)
             {
-                List<Type> applicableComponentTypes = await this.catalogSchemaCommander.GetApplicableComponentTypes(commerceEntity, request.ItemId, context.CommerceContext);
+                List<Type> applicableComponentTypes = this.catalogSchemaCommander.GetApplicableComponentTypes(commerceEntity, request.ItemId, context.CommerceContext);
 
                 var editableComponentType = applicableComponentTypes.SingleOrDefault(type => type.FullName == arg.Name);
 
@@ -59,7 +59,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                 }
             }
             
-            return arg;
+            return await Task.FromResult(arg);
         }
     }
 }

@@ -6,9 +6,9 @@
 
 namespace Plugin.Plumber.Component.Sample.Components
 {
+    using Plugin.Plumber.Component.Decorator.Attributes;
+    using Plugin.Plumber.Component.Decorator.Attributes.SellableItem;
     using Sitecore.Commerce.Core;
-    using Plugin.Plumber.Component.Attributes;
-    using Plugin.Plumber.Component.Attributes.SellableItem;
 
     /// <inheritdoc />
     /// <summary>

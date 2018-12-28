@@ -1,18 +1,8 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigureSitecore.cs" company="Sitecore Corporation">
-//   Copyright (c) Sitecore Corporation 1999-2017
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Plugin.Plumber.Component.Sample
+﻿namespace Plugin.Plumber.Component.Sample
 {
-    using System.Reflection;
     using Microsoft.Extensions.DependencyInjection;
-    using Plugin.Plumber.Component.Pipelines;
-    using Plugin.Plumber.Component.Sample.Pipelines.Blocks;
-    using Sitecore.Commerce.Core;
+    using Plugin.Plumber.Component.Sample.Components;
     using Sitecore.Framework.Configuration;
-    using Sitecore.Framework.Pipelines.Definitions.Extensions;
 
     /// <summary>
     /// The configure sitecore class.
@@ -27,17 +17,10 @@ namespace Plugin.Plumber.Component.Sample
         /// </param>
         public void ConfigureServices(IServiceCollection services)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            services.RegisterAllPipelineBlocks(assembly);
-
-            services.Sitecore().Pipelines(config => config
-                .ConfigurePipeline<IGetEntityViewComponentsPipeline>(configure =>
-                {
-                    configure.Add<GetEntityViewComponentsBlock>();
-                })
-               .ConfigurePipeline<IConfigureServiceApiPipeline>(configure => configure.Add<ConfigureServiceApiBlock>()));
-
-            services.RegisterAllCommands(assembly);
+            services.Plumber().ViewComponents(config =>
+                config.AddViewComponent<WarrantyComponent>()
+                .AddViewComponent<NotesComponent>()
+                .AddViewComponent<SampleComponent>());
         }
     }
 }
