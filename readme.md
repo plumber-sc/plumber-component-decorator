@@ -95,6 +95,7 @@ This code does three things:
 
 **Step 3**  
 Plumber Component Decorator needs to know about the `WarrantyComponent`. To register your component add the following lines to your `ConfigureSitecore` class:
+
 ```c#
 services.Plumber().ViewComponents(config => 
                                   config.AddViewComponent<WarrantyComponent>());
