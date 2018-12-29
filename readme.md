@@ -92,7 +92,7 @@ This code does three things:
  - The `AllSellableItems` attribute indicates this component should be added to all sellable items. There are other attributes that allow you to add the component to other entities.  
  - Add a `Property` attribute to each property you want to be viewable or editable (or both).
 
-- [ ] Plumber Component Decorator needs to know about the `WarrantyComponent`. To register your component add the following lines to your `ConfigureSitecore` class:
+3. Plumber Component Decorator needs to know about the `WarrantyComponent`. To register your component add the following lines to your `ConfigureSitecore` class:
 ```c#
 services.Plumber().ViewComponents(config => 
                                   config.AddViewComponent<WarrantyComponent>());
