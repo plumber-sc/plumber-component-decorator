@@ -60,12 +60,13 @@ Now, if you want users to be able to edit the warranty information in the Mercha
 * Add a block to the `IDoActionPipeline` to save the data the user edited.
 * Add another block to the `IGetEntityViewPipeline` to handle updating the Sitecore template for a sellable item.
 
-### Making a component viewable and editable using Plumber Component Decorator
-
 Instead, with __Plumber Component Decorator__ you do the following:
 
-1. Add a dependency on the Plumber Component Decorator Nuget package. You can use the package manager console and execute the following command: `Install-Package Plugin.Plumber.Component.Decorator` or add a dependency on `Plugin.Plumber.Component.Decorator` using the Nuget Package Manager.
-2. Add some attributes to the `WarrantyComponent` class so it looks like this:
+**Step 1**   
+Add a dependency on the Plumber Component Decorator Nuget package. You can use the package manager console and execute the following command: `Install-Package Plugin.Plumber.Component.Decorator` or add a dependency on `Plugin.Plumber.Component.Decorator` using the Nuget Package Manager.
+
+**Step 2**  
+Add some attributes to the `WarrantyComponent` class so it looks like this:
 
 
 ```c#
@@ -92,7 +93,9 @@ This code does three things:
  - The `AllSellableItems` attribute indicates this component should be added to all sellable items. There are other attributes that allow you to add the component to other entities.  
  - Add a `Property` attribute to each property you want to be viewable or editable (or both).
 
-- [ ] Plumber Component Decorator needs to know about the `WarrantyComponent`. To register your component add the following lines to your `ConfigureSitecore` class:
+**Step 3**  
+Plumber Component Decorator needs to know about the `WarrantyComponent`. To register your component add the following lines to your `ConfigureSitecore` class:
+
 ```c#
 services.Plumber().ViewComponents(config => 
                                   config.AddViewComponent<WarrantyComponent>());
