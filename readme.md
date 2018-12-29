@@ -60,8 +60,6 @@ Now, if you want users to be able to edit the warranty information in the Mercha
 * Add a block to the `IDoActionPipeline` to save the data the user edited.
 * Add another block to the `IGetEntityViewPipeline` to handle updating the Sitecore template for a sellable item.
 
-### Making a component viewable and editable using Plumber Component Decorator
-
 Instead, with __Plumber Component Decorator__ you do the following:
 
 **Step 1**   
