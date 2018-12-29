@@ -1,0 +1,4 @@
+theme: jekyll-theme-minimal
+title: Plumber Component Decorator
+description: Make components viewable and editable in Sitecore Commerce Business Tools
+logo: https://raw.githubusercontent.com/plumber-sc/plumber-sc/master/docs/images/logo.png
