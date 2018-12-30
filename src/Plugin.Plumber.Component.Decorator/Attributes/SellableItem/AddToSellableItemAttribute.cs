@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Plugin.Plumber.Component.Decorator.Attributes.SellableItem
 {
-    
-
+    /// <summary>
+    ///     Attribute to indicate the component to which the attribute is attached should 
+    ///     be added to all sellable items.
+    /// </summary>
     [System.AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class AddToSellableItemAttribute : SellableItemAttributeBase
     {
-        public AddToSellableItemAttribute(AddToSellableItem addToSellableItem) : base(addToSellableItem)
+        public AddToSellableItemAttribute(AddToSellableItem addToSellableItem = AddToSellableItem.SellableItemAndVariant) : base(addToSellableItem)
         {
         }
     }

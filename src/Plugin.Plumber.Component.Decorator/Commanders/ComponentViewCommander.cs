@@ -67,7 +67,7 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
             {
                 System.Attribute[] attrs = System.Attribute.GetCustomAttributes(componentType);
 
-                if (attrs.Any(attr => attr is AllSellableItemsAttribute) && commerceEntity is SellableItem)
+                if (attrs.Any(attr => attr is AddToSellableItemAttribute) && commerceEntity is SellableItem)
                 {
                     var sellableItemsAttribute = attrs.Single(attr => attr is SellableItemAttributeBase) as SellableItemAttributeBase;
                     var addToSellableItem = sellableItemsAttribute.AddToSellableItem;
