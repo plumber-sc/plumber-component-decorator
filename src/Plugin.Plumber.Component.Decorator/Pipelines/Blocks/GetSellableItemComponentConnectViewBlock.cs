@@ -18,7 +18,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
         {
             return attrs.SingleOrDefault(attr => attr is AddToAllEntityTypesAttribute) is AddToAllEntityTypesAttribute
                 || attrs.SingleOrDefault(attr => attr is AddToEntityTypeAttribute && ((AddToEntityTypeAttribute)attr).EntityType == typeof(SellableItem)) != null
-                || attrs.SingleOrDefault(attr => attr is AllSellableItemsAttribute) is AllSellableItemsAttribute
+                || attrs.SingleOrDefault(attr => attr is AddToSellableItemAttribute) is AddToSellableItemAttribute
                 || attrs.SingleOrDefault(attr => attr is AddToItemDefinitionAttribute) is AddToItemDefinitionAttribute;
         }
 

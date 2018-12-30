@@ -5,7 +5,7 @@ using Plugin.Plumber.Component.Decorator.Attributes.SellableItem;
 namespace Plugin.Plumber.Component.Sample.Components
 {
     [EntityView(viewName:"Warranty Information")]
-    [AllSellableItems(AddToSellableItem.SellableItemOnly)]
+    [AddToSellableItem(AddToSellableItem.SellableItemOnly)]
     public class WarrantyComponent : Sitecore.Commerce.Core.Component
     {
         [Property("Warranty length (months)", showInList:true)]
