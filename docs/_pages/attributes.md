@@ -1,4 +1,11 @@
-# Available Attributes
+---
+title: All Available Attributes
+toc: true
+sidebar:
+  title: "Sample Title"
+  nav: sidebar
+permalink: /docs/attributes/
+---
 
 You control how views of your components are created in the Sitecore Commerce Business Tools by adding attributes to your component. Below you will find the attributes you can use.
 
@@ -93,4 +100,6 @@ Add a `PropertyAttribute` to each property of the class you want to be visible i
 | `IsReadOnly`  | Set to `true` to indicate this property cannot be edited in the Merchandising Manager |
 | `IsRequired`  | Set to `true` if this property is required.                  |
 
-## 
+## Validation
+
+You can also [add validation attributes](validation.md) to your component. 
