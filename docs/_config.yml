@@ -304,3 +304,8 @@ defaults:
       layout: single
       author_profile: false
       toc: true
+      toc_label: "On this page"
+      toc_icon: book
+      sidebar:
+        title: "Contents"
+        nav: sidebar

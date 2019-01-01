@@ -1,12 +1,8 @@
 ---
-title: All Available Attributes
+title: Attributes
 toc: true
-sidebar:
-  title: "Sample Title"
-  nav: sidebar
 permalink: /docs/attributes/
 ---
-
 You control how views of your components are created in the Sitecore Commerce Business Tools by adding attributes to your component. Below you will find the attributes you can use.
 
 ## Class Attributes
@@ -14,7 +10,7 @@ The following attributes can be added to the `Component` class.
 
 ### [EntityViewAttribute](#EntityViewAttribute)
 
-Add the `EntityVuewAttribute` to a class to indicate the class should be added as an entity view in the BizFx tools and set a user friendly view name.
+Add the `EntityViewAttribute` to a class to indicate the class should be added as an entity view in the BizFx tools and set a user friendly view name.
 
 | Parameter  | Description                                           |
 | ---------- | ----------------------------------------------------- |

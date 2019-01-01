@@ -21,6 +21,13 @@ $sans-serif : 'Open Sans', sans-serif;
     text-align: center;
 }
 
-.page__title {
+.page__hero--overlay .page__title {
     font-family: 'Lobster', cursive;
+    font-size: 3.5em;
+    color: #eceff1;
+    text-shadow: 2px 2px #546e7a;
+}
+
+.page__title {
+    color: #DC3F30;
 }
