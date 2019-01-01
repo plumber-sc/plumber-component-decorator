@@ -3,6 +3,7 @@ title: Attributes
 toc: true
 permalink: /docs/attributes/
 ---
+
 You control how views of your components are created in the Sitecore Commerce Business Tools by adding attributes to your component. Below you will find the attributes you can use.
 
 ## Class Attributes

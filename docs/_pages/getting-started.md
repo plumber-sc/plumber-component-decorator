@@ -75,3 +75,4 @@ services.Plumber().ViewComponents(config =>
                                   config.AddViewComponent<WarrantyComponent>());
 ```
 This code registers `WarrantyComponent` with Plumber Component Decorator. 
+
