@@ -1,4 +1,11 @@
-# Component Validation
+---
+title: Component Validation
+toc: true
+sidebar:
+  title: "Sample Title"
+  nav: sidebar
+permalink: /docs/validation/
+---
 You can add [validation attributes](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-2.2) from the `System.ComponentModel.DataAnnotations` namespace to the properties of your components so they can be automatically validated in the Sitecore Commerce Business Tools. 
 
 Plumber Component Decorator adds the `DoActionAddValidationConstraintsBlock` to the `IDoActionPipeline` pipeline, which will validate the entered data and adds error messages if necessary.
