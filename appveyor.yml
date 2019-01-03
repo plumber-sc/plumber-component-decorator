@@ -37,5 +37,8 @@ deploy:
   on:
     branch: master
 - provider: GitHub
+  release: plumber-component-decorator-v$(appveyor_build_version)
+  description: 'Release description'
   auth_token:
     secure: /GLYjd57jHrHJwlSnWwIqtZmir/Hb2CXwBc7nWdrM1IZFwDwnAX0s02v+ST4Ah9m
+  artifact: /.*\.nupkg/    
