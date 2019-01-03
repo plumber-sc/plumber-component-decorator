@@ -36,3 +36,6 @@ deploy:
     secure: lRgjizJgJ+gShbGwlM7Sl+P2NEPJ1drvOCPTbaU0qsa0kxS7E4oA7ylaHgNlJ0T7
   on:
     branch: master
+- provider: GitHub
+  auth_token:
+    secure: /GLYjd57jHrHJwlSnWwIqtZmir/Hb2CXwBc7nWdrM1IZFwDwnAX0s02v+ST4Ah9m
