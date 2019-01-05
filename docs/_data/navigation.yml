@@ -24,4 +24,6 @@ sidebar:
         url: /docs/attributes/
       - title: Component Validation
         url: /docs/validation/
+      - title: Extensibility
+        url: /docs/extensibilty
 
