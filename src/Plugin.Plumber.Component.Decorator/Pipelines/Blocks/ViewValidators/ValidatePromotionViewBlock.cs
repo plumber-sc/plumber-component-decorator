@@ -1,21 +1,15 @@
-﻿using Plugin.Plumber.Component.Decorator.Pipelines.Arguments;
-using Sitecore.Commerce.Core;
+﻿using Sitecore.Commerce.Core;
 using Sitecore.Commerce.Plugin.Promotions;
-using Sitecore.Framework.Pipelines;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks.ViewValidators
 {
     public class ValidatePromotionViewBlock : ValidateEntityViewBaseBlock<Promotion>
     {
-        protected override string GetMasterViewName(CommercePipelineExecutionContext context)
+        protected override List<string> GetApplicableViewNames(CommercePipelineExecutionContext context)
         {
-            var promotionsViewsPolicy = context.GetPolicy<KnownPromotionsViewsPolicy>();
-            return promotionsViewsPolicy.Master;
+            var viewsPolicy = context.GetPolicy<KnownPromotionsViewsPolicy>();
+            return new List<string>() { viewsPolicy?.Master };
         }
     }
 }
