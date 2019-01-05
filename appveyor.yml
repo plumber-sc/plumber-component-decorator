@@ -41,4 +41,6 @@ deploy:
   description: 'Release description'
   auth_token:
     secure: /GLYjd57jHrHJwlSnWwIqtZmir/Hb2CXwBc7nWdrM1IZFwDwnAX0s02v+ST4Ah9m
-  artifact: /.*\.nupkg/    
+  artifact: /.*\.nupkg/  
+  on:
+    branch: master  
