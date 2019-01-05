@@ -1,3 +1,5 @@
+.\Lib\GitVersion.exe /output buildserver
+
 Write-Host "Building:"
 Write-Host $Env:APPVEYOR_BUILD_VERSION
 
