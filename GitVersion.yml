@@ -1,5 +1,6 @@
-assembly-versioning-scheme: MajorMinorPatch
-mode: ContinuousDelivery
-branches: {}
+branches:
+  release:
+    regex: releases?[/-]
+    tag: rc
 ignore:
   sha: []
