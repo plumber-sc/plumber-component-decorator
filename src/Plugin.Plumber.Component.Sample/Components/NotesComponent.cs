@@ -18,7 +18,7 @@ namespace Plugin.Plumber.Component.Sample.Components
         [Property("External Notes", isRequired: true, showInList: true)]
         public string ExternalNotes { get; set; } = string.Empty;
 
-        [Property("Internal Notes")]
+        [Property("Internal Notes", UIType:"RichText")]
         [Required]
         public string InternalNotes { get; set; } = string.Empty;
     }
