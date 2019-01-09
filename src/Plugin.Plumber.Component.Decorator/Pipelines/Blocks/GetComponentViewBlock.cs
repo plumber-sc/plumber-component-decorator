@@ -118,6 +118,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                                         Name = prop.Name,
                                         DisplayName = propAttr.DisplayName,
                                         RawValue = component != null ? prop.GetValue(component) : "",
+                                        UiType = propAttr?.UIType,
                                         IsReadOnly = !isEditViewForThisComponent && propAttr.IsReadOnly,
                                         IsRequired = propAttr.IsRequired
                                     };

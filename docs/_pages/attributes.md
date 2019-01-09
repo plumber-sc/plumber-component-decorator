@@ -6,6 +6,10 @@ permalink: /docs/attributes/
 
 You control how views of your components are created in the Sitecore Commerce Business Tools by adding attributes to your component. Below you will find the attributes you can use.
 
+There are two types of attributes:
+* [Class Attributes](#class-attributes) are applied to classes that inherit from the `Component` class.
+* [Property Attributes](#property-attributes) are applied to properties.
+
 ## Class Attributes
 The following attributes can be added to the `Component` class. 
 
@@ -93,9 +97,11 @@ Add a `PropertyAttribute` to each property of the class you want to be visible i
 
 | Parameter     | Description                                                  |
 | ------------- | ------------------------------------------------------------ |
-| `DisplayName` | Name of the property shown in the Merchandising Manager      |
-| `IsReadOnly`  | Set to `true` to indicate this property cannot be edited in the Merchandising Manager |
-| `IsRequired`  | Set to `true` if this property is required.                  |
+| `DisplayName` | Name of the property shown in the Merchandising Manager. Default: Empty string. |
+| `UIType`      | The UIType sets the control type that will be rendered on the entity view. Default: null. When no UIType is provided, the UI control is based off the data type that is set against the property. You can find a list of possible UI types on Andrew Sutherlands blog titled [Business Tools UI Hints and UI Types](http://andrewsutherland.azurewebsites.net/2018/10/02/business-tools-ui-hints-and-ui-types/) (scroll down to the UI Types section) |
+| `IsReadOnly`  | Set to `true` to indicate this property cannot be edited in the Merchandising Manager. Default: `false`. |
+| `IsRequired`  | Set to `true` if this property is required. Default: `false`. |
+| `ShowInList`  | Set to `false` if this property should not be shown in the list view. Default: `true`.|
 
 ## Validation
 
