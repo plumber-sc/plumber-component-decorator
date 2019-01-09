@@ -29,5 +29,6 @@ namespace Plugin.Plumber.Component.Sample.Components
         /// </summary>
         [Property("Comment for the sample component")]
         public string Comment { get; set; }
+
     }
 }
