@@ -37,6 +37,8 @@ deploy:
     secure: lRgjizJgJ+gShbGwlM7Sl+P2NEPJ1drvOCPTbaU0qsa0kxS7E4oA7ylaHgNlJ0T7
   on:
     branch: master
+    APPVEYOR_REPO_TAG: true
+    
 - provider: GitHub
   release: plumber-component-decorator-v$(appveyor_build_version)
   description: 'Release description'
