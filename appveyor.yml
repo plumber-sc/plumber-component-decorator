@@ -1,5 +1,4 @@
 version: 0.2.{build}
-skip_tags: true
 
 pull_requests:
   do_not_increment_build_number: true
@@ -37,7 +36,10 @@ deploy:
     secure: lRgjizJgJ+gShbGwlM7Sl+P2NEPJ1drvOCPTbaU0qsa0kxS7E4oA7ylaHgNlJ0T7
   on:
     branch: master
+    APPVEYOR_REPO_TAG: true
+
 - provider: GitHub
+  tag: $(APPVEYOR_REPO_TAG_NAME)
   release: plumber-component-decorator-v$(appveyor_build_version)
   description: 'Release description'
   auth_token:
