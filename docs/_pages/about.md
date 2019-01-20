@@ -23,6 +23,10 @@ Plumber Component Decorator automatically adds pipeline blocks to the `IGetEntit
 
 This means you just add attributes to your catalog component class and **Plumber Component Decorator** will take care of the rest.
 
+## How does Plumber Component Decorator relate to Plumber Catalog?
+
+Plumber Component Decorator is an extension of [Plumber Catalog](https://github.com/plumber-sc/plumber-catalog). Where Plumber Catalog is focused on extending the catalog, Plumber Component Decorator extens this to all entities. 
+
 ## How to use it? 
 
 Add a Nuget dependency on `Plugin.Plumber.Component.Decorator` to the plugin that contains your components:
