@@ -23,10 +23,6 @@
     <PackageReference Include="Sitecore.Commerce.Plugin.Promotions" Version="2.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="ConfigureSitecore.cs" />
-  </ItemGroup>
-
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
