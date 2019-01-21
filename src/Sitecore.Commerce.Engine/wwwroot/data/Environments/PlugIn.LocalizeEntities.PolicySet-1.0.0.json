@@ -57,6 +57,15 @@
           },
           {
             "$type": "Sitecore.Commerce.Core.LocalizeEntityComponentPolicy, Sitecore.Commerce.Core",
+            "Path": "NotesComponent",
+            "Properties": [
+              "ExternalNotes"
+            ],
+            "ActionView": "Plugin.Plumber.Component.Sample.Components.NotesComponent",
+            "IsItemComponent": false
+          },
+          {
+            "$type": "Sitecore.Commerce.Core.LocalizeEntityComponentPolicy, Sitecore.Commerce.Core",
             "Path": "ItemVariationsComponent.ItemVariationComponent",
             "Properties": [
               "DisplayName",
