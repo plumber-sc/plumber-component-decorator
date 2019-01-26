@@ -45,6 +45,24 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
         }
 
         /// <summary>
+        ///     Returns a list of viewable component types. A viewable component type is one that is either already in the entity and
+        ///     has been registered or is viewable because of the applicability rules.
+        /// </summary>
+        /// <param name="commerceEntity"></param>
+        /// <param name="itemId"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public List<Type> GetViewableComponentTypes(CommerceEntity commerceEntity, string itemId, CommerceContext context)
+        {
+            var knownComponentTypesInEntity = GetAllComponentTypes().Where(type => commerceEntity.Components.Any(comp => type.IsInstanceOfType(comp)));
+
+            var applicableComponentTypes = GetApplicableComponentTypes(commerceEntity, itemId, context);
+
+            var viewableComponentTypes = knownComponentTypesInEntity.Union(applicableComponentTypes);
+            return viewableComponentTypes.ToList();
+        }
+
+        /// <summary>
         ///     Retrieves all component types applicable for the sellable item
         /// </summary>
         /// <param name="commerceEntity">Sellable item for which to get the applicable components</param>
@@ -53,13 +71,6 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
         /// <returns></returns>
         public List<Type> GetApplicableComponentTypes(CommerceEntity commerceEntity, string itemId, CommerceContext context)
         {
-            // Get the item definition
-            var catalogs = commerceEntity.GetComponent<CatalogsComponent>();
-
-            // TODO: What happens if a sellableitem is part of multiple catalogs?
-            var catalog = catalogs.GetComponent<CatalogComponent>();
-            var itemDefinition = catalog.ItemDefinition;
-
             var allComponentTypes = GetAllComponentTypes();
 
             var applicableComponentTypes = new List<Type>();
@@ -67,45 +78,20 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
             {
                 System.Attribute[] attrs = System.Attribute.GetCustomAttributes(componentType);
 
-                if (attrs.Any(attr => attr is AddToSellableItemAttribute) && commerceEntity is SellableItem)
+                var applicabilityAttributes = attrs.Where(attr => typeof(ApplicabilityAttribute).IsAssignableFrom(attr.GetType()));
+                foreach(ApplicabilityAttribute applicabilityAttribute in applicabilityAttributes)
                 {
-                    var sellableItemsAttribute = attrs.Single(attr => attr is SellableItemAttributeBase) as SellableItemAttributeBase;
-                    var addToSellableItem = sellableItemsAttribute.AddToSellableItem;
-
-                    if (IsApplicableComponent(itemId, addToSellableItem))
+                    if(applicabilityAttribute.IsApplicableToEntity(commerceEntity, itemId))
                     {
-                        applicableComponentTypes.Add(componentType);
+                        if (!applicableComponentTypes.Contains(componentType))
+                        {
+                            applicableComponentTypes.Add(componentType);
+                        }
                     }
                 }
-                else if (attrs.Any(attr => attr is AddToItemDefinitionAttribute && ((AddToItemDefinitionAttribute)attr).ItemDefinition == itemDefinition))
-                {
-                    var sellableItemsAttribute = attrs.Single(attr => attr is AddToItemDefinitionAttribute) as AddToItemDefinitionAttribute;
-                    var addToSellableItem = sellableItemsAttribute.AddToSellableItem;
-
-                    if (IsApplicableComponent(itemId, addToSellableItem))
-                    {
-                        applicableComponentTypes.Add(componentType);
-                    }
-                }
-                else if (attrs.Any(attr => attr is AddToEntityTypeAttribute && ((AddToEntityTypeAttribute)attr).EntityType == commerceEntity.GetType()))
-                {
-                    applicableComponentTypes.Add(componentType);
-                }
-                else if (attrs.Any(attr => attr is AddToAllEntityTypesAttribute))
-                {
-                    applicableComponentTypes.Add(componentType);
-                }
-
             }
 
             return applicableComponentTypes;
-        }
-
-        private bool IsApplicableComponent(string itemId, AddToSellableItem addToSellableItem)
-        {
-            return (addToSellableItem == AddToSellableItem.SellableItemAndVariant) ||
-                (addToSellableItem == AddToSellableItem.SellableItemOnly && string.IsNullOrEmpty(itemId)) ||
-                (addToSellableItem == AddToSellableItem.VariantOnly && !string.IsNullOrEmpty(itemId));
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sitecore.Commerce.Core;
 
 namespace Plugin.Plumber.Component.Decorator.Attributes.SellableItem
 {
@@ -13,8 +14,13 @@ namespace Plugin.Plumber.Component.Decorator.Attributes.SellableItem
     [System.AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class AddToSellableItemAttribute : SellableItemAttributeBase
     {
-        public AddToSellableItemAttribute(AddToSellableItem addToSellableItem = AddToSellableItem.SellableItemAndVariant) : base(addToSellableItem)
+        public AddToSellableItemAttribute(AddToSellableItemType addToSellableItem = AddToSellableItemType.SellableItemAndVariant) : base(addToSellableItem)
         {
+        }
+
+        public override bool IsApplicableToEntity(CommerceEntity entity, string itemId)
+        {
+            return entity is Sitecore.Commerce.Plugin.Catalog.SellableItem;
         }
     }
 }
