@@ -144,7 +144,5 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                 }
             }
         }
-
-
     }
 }
