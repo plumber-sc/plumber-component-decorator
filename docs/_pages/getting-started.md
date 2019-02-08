@@ -78,6 +78,6 @@ This code registers `WarrantyComponent` with Plumber Component Decorator.
 
 ### Now continue to...
 
-* [Learn about all the attributes you can use](/docs/attributes.md)
-* [Learn how to can add validation to your components](/docs/validation.md)
-* [Learn about extending Plumber Component Decorator to make your own entities visible in the Business Tools](/docs/extensibility.md)
+* [Learn about all the attributes you can use](/docs/attributes)
+* [Learn how to can add validation to your components](/docs/validation)
+* [Learn about extending Plumber Component Decorator to make your own entities visible in the Business Tools](/docs/extensibility)
