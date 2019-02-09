@@ -333,8 +333,8 @@ ASALocalRun/
 
 src/Sitecore.Commerce.Engine/wwwroot/logs/*
 
-# Plugin.Sample.AdventureWorks/
-# Plugin.Sample.Habitat/
-# Plugin.Sample.UpgradeLog/
-# Shared/
-# Sitecore.Commerce.Engine/
+Plugin.Sample.AdventureWorks/
+Plugin.Sample.Habitat/
+Plugin.Sample.UpgradeLog/
+Shared/
+Sitecore.Commerce.Engine/
