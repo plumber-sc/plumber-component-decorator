@@ -9,7 +9,6 @@ using System.Linq;
 using Plugin.Plumber.Component.Decorator.Attributes;
 using System.Collections.Generic;
 using Plugin.Plumber.Component.Decorator.Commanders;
-using Sitecore.Commerce.Plugin.Promotions;
 using Plugin.Plumber.Component.Decorator.Pipelines.Arguments;
 
 namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
@@ -34,7 +33,7 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
             Condition.Requires(entityView).IsNotNull($"{Name}: The argument cannot be null.");
             var request = this.viewCommander.CurrentEntityViewArgument(context.CommerceContext);
 
-            if(request.Entity == null)
+            if (request.Entity == null)
             {
                 return entityView;
             }
@@ -49,17 +48,17 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
             }
 
             // Check if this is an edit view or display view
-            if(!result.IsEditView && !result.IsDisplayView)
+            if (!result.IsEditView && !result.IsDisplayView)
             {
                 return entityView;
             }
 
-            List<Type> applicableComponentTypes = this.commander.GetApplicableComponentTypes(request.Entity, request.ItemId, context.CommerceContext);
-
-            var targetView = entityView;
-
             var commerceEntity = request.Entity;
-            var components = request.Entity.Components;
+            var components = commerceEntity.Components;
+
+            // Get a list of all the component types that have been registered 
+            var viewableComponentTypes = this.commander.GetViewableComponentTypes(commerceEntity, request.ItemId, context.CommerceContext);
+
             if (!string.IsNullOrWhiteSpace(entityView.ItemId) && commerceEntity is SellableItem)
             {
                 var variation = ((SellableItem)commerceEntity).GetVariation(entityView.ItemId);
@@ -69,7 +68,16 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                 }
             }
 
-            foreach (var componentType in applicableComponentTypes)
+            CreateEntityViews(entityView, result, components, viewableComponentTypes);
+
+            return entityView;
+        }
+
+        private static void CreateEntityViews(EntityView entityView, EntityViewConditionsArgument result, IList<Sitecore.Commerce.Core.Component> components, IEnumerable<Type> viewableComponentTypes)
+        {
+            var targetView = entityView;
+
+            foreach (var componentType in viewableComponentTypes)
             {
                 System.Attribute[] attrs = System.Attribute.GetCustomAttributes(componentType);
 
@@ -122,35 +130,38 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
 
                     if (result.IsDisplayView || (result.IsEditView && isEditViewForThisComponent))
                     {
-                        var props = componentType.GetProperties();
-
-                        foreach (var prop in props)
-                        {
-                            System.Attribute[] propAttributes = System.Attribute.GetCustomAttributes(prop);
-
-                            if (propAttributes.SingleOrDefault(attr => attr is PropertyAttribute) is PropertyAttribute propAttr)
-                            {
-                                if (isEditViewForThisComponent || (!isEditViewForThisComponent && propAttr.ShowInList))
-                                {
-                                    var viewProperty = new ViewProperty
-                                    {
-                                        Name = prop.Name,
-                                        DisplayName = propAttr.DisplayName,
-                                        RawValue = component != null ? prop.GetValue(component) : "",
-                                        UiType = propAttr?.UIType,
-                                        IsReadOnly = !isEditViewForThisComponent && propAttr.IsReadOnly,
-                                        IsRequired = propAttr.IsRequired
-                                    };
-
-                                    targetView.Properties.Add(viewProperty);
-                                }
-                            }
-                        }
+                        AddPropertiesToView(targetView, componentType, component, isEditViewForThisComponent);
                     }
                 }
             }
+        }
 
-            return entityView;
+        private static void AddPropertiesToView(EntityView targetView, Type componentType, Sitecore.Commerce.Core.Component component, bool isEditViewForThisComponent)
+        {
+            var props = componentType.GetProperties();
+
+            foreach (var prop in props)
+            {
+                System.Attribute[] propAttributes = System.Attribute.GetCustomAttributes(prop);
+
+                if (propAttributes.SingleOrDefault(attr => attr is PropertyAttribute) is PropertyAttribute propAttr)
+                {
+                    if (isEditViewForThisComponent || (!isEditViewForThisComponent && propAttr.ShowInList))
+                    {
+                        var viewProperty = new ViewProperty
+                        {
+                            Name = prop.Name,
+                            DisplayName = propAttr.DisplayName,
+                            RawValue = component != null ? prop.GetValue(component) : "",
+                            UiType = propAttr?.UIType,
+                            IsReadOnly = !isEditViewForThisComponent && propAttr.IsReadOnly,
+                            IsRequired = propAttr.IsRequired
+                        };
+
+                        targetView.Properties.Add(viewProperty);
+                    }
+                }
+            }
         }
     }
 }
