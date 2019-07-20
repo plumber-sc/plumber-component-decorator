@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Plugin.Plumber.Component.Decorator.Attributes;
 using Plugin.Plumber.Component.Decorator.Attributes.SellableItem;
 
@@ -16,5 +17,14 @@ namespace Plugin.Plumber.Component.Sample.Components
         [RegularExpression(pattern: "^(Days|Months|Years)$",
             ErrorMessage ="Valid values are: Days, Months, Years")]
         public string WarrantyInformation { get; set; }
+
+        [Property("Item has a waranty", showInList:true)]
+        public bool HasWarranty { get; set; }
+
+        [Property("Warranty ends at", showInList: true)]
+        public DateTimeOffset WarrantyEndDate { get; set; }
+
+        [Property("Price for extra warranty", showInList:true)]
+        public Decimal ExtraWarrantyPrice { get; set; }
     }
 }
