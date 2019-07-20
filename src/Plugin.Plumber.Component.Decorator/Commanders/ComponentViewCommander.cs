@@ -137,7 +137,7 @@ namespace Plugin.Plumber.Component.Decorator.Commanders
                     var fieldValue = properties.FirstOrDefault(x => x.Name.Equals(prop.Name, StringComparison.OrdinalIgnoreCase))?.Value;
 
                     TypeConverter converter = TypeDescriptor.GetConverter(prop.PropertyType);
-                    if (converter.CanConvertFrom(typeof(string)) && converter.CanConvertTo(prop.PropertyType))
+                    if (converter.CanConvertFrom(typeof(string)))
                     {
                         try
                         {
