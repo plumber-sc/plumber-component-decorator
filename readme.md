@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/gqdjcjwgyfkb8819?svg=true)](https://ci.appveyor.com/project/ewerkman/plumber-catalog-af9f9)
+[![Build status](https://ci.appveyor.com/api/projects/status/v4o7vmri57ytaimp?svg=true)](https://ci.appveyor.com/project/ewerkman/plumber-component-decorator)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b31e47e5-d775-41d8-8efe-83813a0cc57d/deploy-status)](https://app.netlify.com/sites/plumber-component-decorator/deploys)
 
 
