@@ -7,7 +7,6 @@
     <owners>Erwin Werkman</owners>
     <licenseUrl>http://www.apache.org/licenses/</licenseUrl>
     <projectUrl>https://github.com/plumber-sc/plumber-component-decorator</projectUrl>
-    <iconUrl></iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Make Sitecore Commerce components easily viewable and editable in Sitecore Commerce Business Tools by annotating them with attributes.</description>
     <tags>sitecore commerce components</tags>
