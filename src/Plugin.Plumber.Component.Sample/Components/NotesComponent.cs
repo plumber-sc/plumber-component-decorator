@@ -4,6 +4,7 @@ using Sitecore.Commerce.Plugin.Inventory;
 using Sitecore.Commerce.Plugin.Orders;
 using Sitecore.Commerce.Plugin.Promotions;
 using Plugin.Plumber.Component.Decorator.Attributes;
+using Plugin.Plumber.Component.Decorator.Constants;
 
 namespace Plugin.Plumber.Component.Sample.Components
 {
@@ -12,7 +13,7 @@ namespace Plugin.Plumber.Component.Sample.Components
     [AddToEntityType(typeof(Promotion))]
     [AddToEntityType(typeof(Order))]
     [AddToAllEntityTypes]
-    [EntityView("Notes")]
+    [EntityView("Notes", uiHint:UIHint.List)]
     public class NotesComponent : Sitecore.Commerce.Core.Component
     {
         [Property("External Notes", isRequired: true, showInList: true)]

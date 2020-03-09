@@ -97,12 +97,31 @@ namespace Plugin.Plumber.Component.Decorator.Pipelines.Blocks
                             DisplayName = entityViewAttribute?.ViewName ?? componentType.Name,
                             EntityId = entityView.EntityId,
                             ItemId = entityView.ItemId,
-                            EntityVersion = entityView.EntityVersion
+                            EntityVersion = entityView.EntityVersion,
+                            UiHint = entityViewAttribute?.UIHint ?? Constants.UIHint.Flat
                         };
 
                         entityView.ChildViews.Add(view);
 
                         targetView = view;
+
+                        if (entityViewAttribute.UIHint == Constants.UIHint.List ||
+                            entityViewAttribute.UIHint == Constants.UIHint.Table)
+                        {   // The list requires a new child view for each "row" or "card" in the list.
+                            var componentView = new EntityView
+                            {
+                                EntityId = entityView.EntityId,
+                                ItemId = entityView.ItemId,
+                                EntityVersion = entityView.EntityVersion,
+                                Name = componentType.FullName
+                            };
+
+                            view.ChildViews.Add(componentView);
+
+                            targetView = componentView;
+                        }
+
+                        
                     }
                     else
                     {
