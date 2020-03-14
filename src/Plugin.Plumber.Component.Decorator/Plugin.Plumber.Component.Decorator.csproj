@@ -15,25 +15,25 @@
 
   <ItemGroup>
     <PackageReference Include="Sitecore.Commerce.Core">
-      <Version>4.0.72</Version>
+      <Version>5.0.42</Version>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Sitecore.Commerce.Plugin.Catalog" Version="4.0.61">
+    <PackageReference Include="Sitecore.Commerce.Plugin.Catalog" Version="5.0.43">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Sitecore.Commerce.Plugin.Customers" Version="4.0.16">
+    <PackageReference Include="Sitecore.Commerce.Plugin.Customers" Version="5.0.14">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Sitecore.Commerce.Plugin.Inventory" Version="4.0.26">
+    <PackageReference Include="Sitecore.Commerce.Plugin.Inventory" Version="5.0.18">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Sitecore.Commerce.Plugin.Orders" Version="4.0.27">
+    <PackageReference Include="Sitecore.Commerce.Plugin.Orders" Version="5.0.20">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Sitecore.Commerce.Plugin.Pricing" Version="4.0.13">
+    <PackageReference Include="Sitecore.Commerce.Plugin.Pricing" Version="5.0.15">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Sitecore.Commerce.Plugin.Promotions" Version="4.0.14">
+    <PackageReference Include="Sitecore.Commerce.Plugin.Promotions" Version="5.0.14">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
